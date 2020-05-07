@@ -1,0 +1,9 @@
+digraph structs {
+ node [shape = record];1[label="<f0>| <f22>Ricardo | <f1>"]; 
+2[label="<f0>| <f22>Juanito | <f1>"]; 
+10[label="<f0>| <f22>Predeterminado | <f1>"]; 
+23[label="<f0>| <f22>Antonio | <f1>"]; 
+1 -> 2;
+2 -> 10;
+10 -> 23;
+}

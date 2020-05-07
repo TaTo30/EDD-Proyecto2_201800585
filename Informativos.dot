@@ -1,0 +1,15 @@
+digraph structs {
+node [shape = record]; 1[label="<fo>|<f22>Optimización de rendimiento y aseguramiento de inocuidad en la industria de quesería; una guía para la pequeña y mediana empresa(10774)|<f1> |<f22>La idea del hombre(10786)|<f2> |<f22>El ocaso de un régimen(10844)|<f3> |<f22>Historia de la provincia de San Vicente de Chiapa y Guatemala de la orden de Predicadores(10848)|<f4> |<f22>Psicología aplicada a la enseñanza(10930)|<f5> "];
+1:f0 -> 0 :here;
+0[label = "<fo> |<f22> Las Ventas en el mundo actual(10772) |<f1>  |<f22> Procesamiento de carnes y embutidos; elaboración, estandarización, control de calidad(10773) |<f2>  "];
+1:f1 -> 2 :here;
+2[label = "<fo> |<f22> Producción higiénica de la leche cruda; una guía para la pequeña y mediana empresa(10775) |<f1>  |<f22> Moral para intelectuales(10783) |<f2>  "];
+1:f2 -> 3 :here;
+3[label = "<fo> |<f22> Constitución pastoral Gaudium et spes, sobre la Iglesia en el mundo actual(10840) |<f1>  |<f22> Introducción a la ética(10842) |<f2>  "];
+1:f3 -> 4 :here;
+4[label = "<fo> |<f22> Educación política nacional(10846) |<f1>  |<f22> De hombres sociales y movimientos políticos / C. Wright Mills.(10847) |<f2>  "];
+1:f4 -> 5 :here;
+5[label = "<fo> |<f22> Evaluación de impacto en formación empresarial ; el caso FUNDES(10927) |<f1>  |<f22> Cómo resolver el problema de falta de tiempo(10928) |<f2>  "];
+1:f5 -> 6 :here;
+6[label = "<fo> |<f22> Pan Am: an airline and its aircraft(10932) |<f1>  |<f22> La Mujer de pelo largo / Leonor Paz y Paz G.(10933) |<f2>  |<f22> El libro de la piedad y de la muerte(10934) |<f3>  "];
+}

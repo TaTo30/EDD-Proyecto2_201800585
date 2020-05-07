@@ -1,0 +1,3 @@
+digraph structs {
+node [shape = record]; 0[label="<fo>|<f22>Ionic(10010)|<f1> "];
+}

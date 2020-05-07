@@ -3,6 +3,7 @@
 package Modelos;
 
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import javax.swing.JFileChooser;
@@ -595,7 +596,7 @@ public class BTree<T> {
     int cin = 0;
     public int claveNodo=0;
     
-    public void Graficar(String path){
+    public String Graficar(String nombre){
         if (raiz != null) {
             grafic = "digraph structs {\n"
                     +"node [shape = record];";
@@ -604,22 +605,21 @@ public class BTree<T> {
             grafic = grafic + "}";
             try{
                 
-                BufferedWriter writer = new BufferedWriter(new FileWriter(path));
+                BufferedWriter writer = new BufferedWriter(new FileWriter(nombre+".dot"));
                 writer.write(String.valueOf(grafic));
                 writer.close();
-                String temp = path.replace(".dot", ".png");
-                System.out.println(temp);
-                String comando = "dot -Tpng "+path+" -o "+path.replace(".dot", ".png");
-                System.out.println(comando);
+                File a = new File(nombre+".dot");
+                //System.out.println(temp);
+                String comando = "dot -Tpng "+a.getAbsolutePath()+" -o"+a.getAbsolutePath().replace(".dot", ".png");
                 Runtime.getRuntime().exec(comando);
-                System.out.println(grafic);
-                System.out.println(path);
+                return nombre+".png";
             }catch(IOException ex){}
             auI =" ";
             auD = " ";
             si = " ";
             grafic = " ";
         }
+        return "";
     }
     
     public void GenerarDot(Node<T> n){

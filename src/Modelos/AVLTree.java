@@ -1,6 +1,10 @@
 
 package Modelos;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.lang.reflect.Array;
 
 
@@ -370,5 +374,42 @@ public class AVLTree<T> {
         PostOrden = (T[]) Array.newInstance(type, count);
         PostOrdenSupport(raiz, PostOrden);
         return PostOrden;
+    }
+    
+    String grafo="";
+    public void Graficar() throws IOException{
+        if (raiz != null) {
+            grafo ="";
+            grafo += "digraph g{ node [shape = circle];";
+            Recorrido(raiz);
+            grafo += "\n}\n";
+            try{
+                BufferedWriter writer = new BufferedWriter(new FileWriter("Categorias.dot"));
+                writer.write(grafo);
+                writer.close();
+                File a = new File("Categorias.dot");
+                String comando = "dot -Tpng "+a.getAbsolutePath()+" -o"+a.getAbsolutePath().replace(".dot", ".png");
+                Runtime.getRuntime().exec(comando);
+            }catch(IOException ex){
+                
+            }
+        }
+    }
+    
+    public void Recorrido(Node<T> nodo){
+        if (nodo != null) {
+            Categorias temp = (Categorias)nodo.data;
+            grafo += temp.getNombre()+";\n";
+            if (nodo.izquierda != null) {
+                Categorias tempI = (Categorias)nodo.izquierda.data;
+                grafo += temp.getNombre()+"->"+tempI.getNombre()+";\n";
+            }
+            if (nodo.derecha != null) {
+                Categorias tempI = (Categorias)nodo.derecha.data;
+                grafo += temp.getNombre()+"->"+tempI.getNombre()+";\n";
+            }
+            Recorrido(nodo.izquierda);
+            Recorrido(nodo.derecha);
+        }
     }
 }
