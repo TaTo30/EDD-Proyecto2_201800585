@@ -9,6 +9,7 @@ import java.io.*;
 import java.net.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -44,10 +45,6 @@ public class Conexion extends Thread {
                     System.out.println("---------se ejecuta el modulo de registro");
                     JSONObject data = (JSONObject) ins.get("Dato");
                     String retorno = ctrl.ProcesoAgregarNodo(data.get("IP").toString(), Integer.parseInt(data.get("Puerto").toString()));
-                    //System.out.println(retorno);
-                    /*BufferedWriter writeFile = new BufferedWriter(new FileWriter("Instrucciones.json"));
-                    writeFile.write(retorno);
-                    writeFile.close();*/
                     Socket clienteTemporal = new Socket(data.get("IP").toString(),Integer.parseInt(data.get("Puerto").toString()));
                     PrintStream salida = new PrintStream(clienteTemporal.getOutputStream(),true);
                     salida.println(retorno);
@@ -56,7 +53,6 @@ public class Conexion extends Thread {
                     break;
                 case 1:
                     System.out.println("---------secuencia de carga masiva de nodos");
-                    //System.out.println(ins.get("Dato").toString());
                     ctrl.RegistrarNodosMasivos(ins.get("Dato").toString());
                     break;
                 case 2:
@@ -65,6 +61,31 @@ public class Conexion extends Thread {
                     String ip3 = data0.get("IP").toString();
                     int port3 = Integer.parseInt(data0.get("Puerto").toString());
                     ctrl.AgregarNodo(new NodoRed(port3, ip3));
+                    break;
+                case 3:
+                    System.out.println("---------secuencia de eliminar nodos");
+                    JSONObject data1 = (JSONObject) ins.get("Dato");
+                    String ip4 = data1.get("IP").toString();
+                    int port4 = Integer.parseInt(data1.get("Puerto").toString());
+                    ctrl.EliminarNodo(ip4, port4);
+                    break;
+                case 4:
+                    System.out.println("---------secuencia de alimentar nodos");
+                    JSONObject data2 = (JSONObject) ins.get("Dato");
+                    ctrl.CargarBloque((JSONArray)data2.get("DATA"));
+                    ctrl.AgregarBloque(data2);
+                    break;
+                case 5:
+                    System.out.println("---------secuencia de envio de blockchain");
+                    JSONObject data3 = (JSONObject) ins.get("Dato");
+                    String ip5 = data3.get("IP").toString();
+                    int port5 = Integer.parseInt(data3.get("Puerto").toString());
+                    ctrl.ParseBlockChain(port5, ip5);
+                    break;
+                case 6:
+                    System.out.println("---------secuencia de sincronizacion");
+                    JSONArray data4 = (JSONArray) ins.get("Dato");
+                    ctrl.BlockChainSync(data4);
                     break;
             }           
             cliente.close();

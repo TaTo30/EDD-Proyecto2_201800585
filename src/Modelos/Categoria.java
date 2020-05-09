@@ -2,13 +2,13 @@
 package Modelos;
 
 
-public class Categorias {
+public class Categoria {
     
     private String nombre;
     private BTree<Libro> libreria;
     private int carnet;
 
-    public Categorias(String nombre, int carnet) {
+    public Categoria(String nombre, int carnet) {
         this.nombre = nombre;
         this.libreria = new BTree<>(BTree.Order.SIX, Libro.class);
         this.carnet = carnet;

@@ -1,7 +1,0 @@
-digraph structs {
-node [shape = record]; 1[label="<fo>|<f22>ISO 9000; auditorías internas de la calidad en la pequeña y mediana empresa(10828)|<f1> "];
-1:f0 -> 0 :here;
-0[label = "<fo> |<f22> Las Claves de la eficacia empresarial; un reto a los empresarios Españoles(10826) |<f1>  |<f22> La Fe explicada / Leo J. Trese.(10827) |<f2>  "];
-1:f1 -> 2 :here;
-2[label = "<fo> |<f22> Introducción al estudio de la música(10894) |<f1>  |<f22> Sociología de la educación(10896) |<f2>  |<f22> El hombre y el dinero: (vistos a la luz de la enseñanza de la Biblia y el Evangelio) / Jacques Ellul ; versión castellana Juan Gil Albert.(10902) |<f3>  "];
-}

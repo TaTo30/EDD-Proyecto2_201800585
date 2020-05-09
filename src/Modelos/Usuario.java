@@ -9,7 +9,7 @@ public class Usuario {
     private String Apellido;
     private String Carrera;
     private String Password;
-    private AVLTree<Categorias> Biblioteca;
+    private AVLTree<Categoria> Biblioteca;
 
     public Usuario(int Carnet, String Nombre, String Apellido, String Carrera, String Password) {
         this.Carnet = Carnet;
@@ -60,11 +60,11 @@ public class Usuario {
         this.Password = Password;
     }
 
-    public AVLTree<Categorias> getBiblioteca() {
+    public AVLTree<Categoria> getBiblioteca() {
         return Biblioteca;
     }
 
-    public void setBiblioteca(AVLTree<Categorias> Biblioteca) {
+    public void setBiblioteca(AVLTree<Categoria> Biblioteca) {
         this.Biblioteca = Biblioteca;
     }
     

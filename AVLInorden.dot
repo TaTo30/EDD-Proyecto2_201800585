@@ -2,9 +2,10 @@ digraph g{ rankdir = LR; node [shape = box];
 Biografia -> Consulta;
 Consulta -> Drama;
 Drama -> Ensayo;
-Ensayo -> Informativos;
-Informativos -> Literatura;
-Literatura -> Revista;
+Ensayo -> Literatura;
+Literatura -> Manga;
+Manga -> Revista;
 Revista -> Sagas;
-Sagas -> Épico;
+Sagas -> Tutorial;
+Tutorial -> Épico;
 }

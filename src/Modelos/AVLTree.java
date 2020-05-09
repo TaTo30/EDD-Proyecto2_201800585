@@ -398,14 +398,14 @@ public class AVLTree<T> {
     
     public void Recorrido(Node<T> nodo){
         if (nodo != null) {
-            Categorias temp = (Categorias)nodo.data;
+            Categoria temp = (Categoria)nodo.data;
             grafo += temp.getNombre()+";\n";
             if (nodo.izquierda != null) {
-                Categorias tempI = (Categorias)nodo.izquierda.data;
+                Categoria tempI = (Categoria)nodo.izquierda.data;
                 grafo += temp.getNombre()+"->"+tempI.getNombre()+";\n";
             }
             if (nodo.derecha != null) {
-                Categorias tempI = (Categorias)nodo.derecha.data;
+                Categoria tempI = (Categoria)nodo.derecha.data;
                 grafo += temp.getNombre()+"->"+tempI.getNombre()+";\n";
             }
             Recorrido(nodo.izquierda);
