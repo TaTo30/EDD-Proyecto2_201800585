@@ -28,7 +28,6 @@ public class Controlador {
     private Usuario logeado;
     private List<NodoRed> nodos;
     private LinkedList<Block> blockchain;
-    private JSONObject jsonblock;
     private JSONArray jsondata, jsonusersadd, jsonusersedit, jsonlibroadd, jsonlibrodelete;
     private JSONArray jsoncatadd, jsoncatdelete;
 
@@ -42,7 +41,6 @@ public class Controlador {
         //IniciarServidor();
         //this.host = "localhost";
         nodos = new List<>();
-        jsonblock = new JSONObject();
         jsondata = new JSONArray();
         jsonusersadd = new JSONArray();
         jsonusersedit = new JSONArray();
@@ -203,7 +201,7 @@ public class Controlador {
         categorias.Find(Categoria.charAt(0)).AgregarLibro(temp);
         JSONObject obj = new JSONObject();
         obj.put("ISBN", ISBN);
-        obj.put("Año", Ano);
+        obj.put("AÃ±o", Ano);
         obj.put("Idioma", Idioma);
         obj.put("Titulo", titulo);
         obj.put("Editorial", Editorial);
@@ -257,7 +255,7 @@ public class Controlador {
             //si la categoria existe verificamos el isbn
             if (ObtenerLibro(ISBN) == null) {
                 //si el libro no existe lo agregamos
-                AgregarLibro(ISBN, libro.get("Titulo").toString(), libro.get("Autor").toString(), libro.get("Editorial").toString(), Integer.parseInt(libro.get("Año").toString()), Integer.parseInt(libro.get("Edicion").toString()), cat, libro.get("Idioma").toString());
+                AgregarLibro(ISBN, libro.get("Titulo").toString(), libro.get("Autor").toString(), libro.get("Editorial").toString(), Integer.parseInt(libro.get("AÃ±o").toString()), Integer.parseInt(libro.get("Edicion").toString()), cat, libro.get("Idioma").toString());
                /* Libro temp = new Libro(ISBN, , logeado.getCarnet());
                 categorias.Find(cat.charAt(0)).AgregarLibro(temp);*/
             }else{
@@ -271,8 +269,8 @@ public class Controlador {
                 if (ObtenerLibro(ISBN) == null) {
                     //si no existe el ISBN, añadimos
                     CrearCategoria(cat);
-                    AgregarLibro(ISBN, libro.get("Titulo").toString(), libro.get("Autor").toString(), libro.get("Editorial").toString(), Integer.parseInt(libro.get("Año").toString()), Integer.parseInt(libro.get("Edicion").toString()), cat, libro.get("Idioma").toString());
-                    /*Libro temp = new Libro(ISBN, libro.get("Titulo").toString(), libro.get("Autor").toString(), libro.get("Editorial").toString(), Integer.parseInt(libro.get("Año").toString()), Integer.parseInt(libro.get("Edicion").toString()), cat, libro.get("Idioma").toString(), logeado.getCarnet());
+                    AgregarLibro(ISBN, libro.get("Titulo").toString(), libro.get("Autor").toString(), libro.get("Editorial").toString(), Integer.parseInt(libro.get("AÃ±o").toString()), Integer.parseInt(libro.get("Edicion").toString()), cat, libro.get("Idioma").toString());
+                    /*Libro temp = new Libro(ISBN, libro.get("Titulo").toString(), libro.get("Autor").toString(), libro.get("Editorial").toString(), Integer.parseInt(libro.get("AÃ±o").toString()), Integer.parseInt(libro.get("Edicion").toString()), cat, libro.get("Idioma").toString(), logeado.getCarnet());
                     categorias.Find(cat.charAt(0)).AgregarLibro(temp);*/
                     JOptionPane.showMessageDialog(null, "Categoria "+cat+" creada", "Categoria Añadida", JOptionPane.INFORMATION_MESSAGE);                    
                 }                
@@ -699,7 +697,7 @@ public class Controlador {
         String cate = obj.get("Categoria").toString();
         if (ObtenerLibro(ISBN) == null) {
             Categoria cat = categorias.Find(cate.charAt(0));
-            Libro emp = new Libro(ISBN,obj.get("Titulo").toString(),obj.get("Autor").toString(),obj.get("Editorial").toString(),Integer.parseInt(obj.get("Año").toString()),Integer.parseInt(obj.get("Edicion").toString()),cate, obj.get("Idioma").toString(),Integer.parseInt(obj.get("Carnet").toString())); 
+            Libro emp = new Libro(ISBN,obj.get("Titulo").toString(),obj.get("Autor").toString(),obj.get("Editorial").toString(),Integer.parseInt(obj.get("AÃ±o").toString()),Integer.parseInt(obj.get("Edicion").toString()),cate, obj.get("Idioma").toString(),Integer.parseInt(obj.get("Carnet").toString())); 
             cat.getLibreria().Add(ISBN, emp);
         }
     }
@@ -846,6 +844,12 @@ public class Controlador {
     }
     public Categoria[] AVLPostorden(){
         return categorias.PostOrden(Categoria.class);
+    }
+    public LinkedList<Block> GetBlockchain(){
+        return this.blockchain;
+    }
+    public List<NodoRed> GetNodos(){
+        return this.nodos;
     }
     
   

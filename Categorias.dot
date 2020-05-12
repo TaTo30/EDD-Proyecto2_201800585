@@ -1,6 +1,6 @@
-digraph g{ node [shape = circle];Literatura;
-Literatura->Consulta;
-Literatura->Revista;
+digraph g{ node [shape = circle];Informativos;
+Informativos->Consulta;
+Informativos->Revista;
 Consulta;
 Consulta->Biografia;
 Consulta->Ensayo;
@@ -9,13 +9,11 @@ Ensayo;
 Ensayo->Drama;
 Drama;
 Revista;
-Revista->Manga;
-Revista->Tutorial;
-Manga;
-Tutorial;
-Tutorial->Sagas;
-Tutorial->Épico;
-Sagas;
+Revista->Literatura;
+Revista->Épico;
+Literatura;
 Épico;
+Épico->Sagas;
+Sagas;
 
 }

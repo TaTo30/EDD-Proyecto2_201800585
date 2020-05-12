@@ -6,15 +6,22 @@
 package Vista;
 
 import Controlador.Controlador;
+import Modelos.Block;
 import Modelos.Categoria;
 import Modelos.Libro;
+import Modelos.LinkedList;
+import Modelos.List;
+import Modelos.NodoRed;
 import Modelos.Usuario;
 import java.awt.Desktop;
+import java.awt.Image;
 import java.awt.event.WindowEvent;
+import java.awt.image.BufferedImage;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
 import static java.lang.Thread.sleep;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -40,6 +47,7 @@ public class Formulario extends javax.swing.JFrame {
    private final Controlador ctrl;
    private DefaultTableModel model;
    private DefaultComboBoxModel cbModel;
+   private String path;
    /* Creates new form Formulario
      * @param a
      */
@@ -198,6 +206,10 @@ public class Formulario extends javax.swing.JFrame {
         jLabel29 = new javax.swing.JLabel();
         jButton16 = new javax.swing.JButton();
         jLabel30 = new javax.swing.JLabel();
+        jLabel36 = new javax.swing.JLabel();
+        jButton18 = new javax.swing.JButton();
+        jLabel37 = new javax.swing.JLabel();
+        jButton22 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -551,10 +563,10 @@ public class Formulario extends javax.swing.JFrame {
 
         jPanel3.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(287, 11, 655, 425));
 
-        jLabel25.setText("Libros");
+        jLabel25.setText("Libros:");
         jPanel3.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 77, -1, -1));
 
-        jLabel26.setText("Categorias");
+        jLabel26.setText("Categorias:");
         jPanel3.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 33, -1, -1));
 
         jButton12.setText("Generar Reporte");
@@ -573,7 +585,7 @@ public class Formulario extends javax.swing.JFrame {
         });
         jPanel3.add(jButton13, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 146, 253, -1));
 
-        jLabel27.setText("Categorias (PREORDEN)");
+        jLabel27.setText("Categorias (PREORDEN):");
         jPanel3.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 131, -1, -1));
 
         jButton14.setText("Generar Reporte");
@@ -584,7 +596,7 @@ public class Formulario extends javax.swing.JFrame {
         });
         jPanel3.add(jButton14, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 195, 253, -1));
 
-        jLabel28.setText("Categorias (INORDEN)");
+        jLabel28.setText("Categorias (INORDEN):");
         jPanel3.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, -1, -1));
 
         jButton15.setText("Generar Reporte");
@@ -595,7 +607,7 @@ public class Formulario extends javax.swing.JFrame {
         });
         jPanel3.add(jButton15, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 244, 253, -1));
 
-        jLabel29.setText("Categorias (POSTORDEN)");
+        jLabel29.setText("Categorias (POSTORDEN):");
         jPanel3.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 229, -1, -1));
 
         jButton16.setText("Generar Reporte");
@@ -604,10 +616,32 @@ public class Formulario extends javax.swing.JFrame {
                 jButton16ActionPerformed(evt);
             }
         });
-        jPanel3.add(jButton16, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 293, 253, -1));
+        jPanel3.add(jButton16, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 300, 253, -1));
 
-        jLabel30.setText("Usuarios");
-        jPanel3.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 278, -1, -1));
+        jLabel30.setText("Blockchain: ");
+        jPanel3.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 380, -1, -1));
+
+        jLabel36.setText("Usuarios:");
+        jPanel3.add(jLabel36, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 278, -1, -1));
+
+        jButton18.setText("Generar Reporte");
+        jButton18.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton18ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButton18, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 400, 253, -1));
+
+        jLabel37.setText("Nodos de la Red:");
+        jPanel3.add(jLabel37, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 330, -1, -1));
+
+        jButton22.setText("Generar Reporte");
+        jButton22.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton22ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButton22, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 350, 253, -1));
 
         jTabbedPane1.addTab("Reportes", jPanel3);
 
@@ -705,6 +739,7 @@ public class Formulario extends javax.swing.JFrame {
         } catch (InterruptedException ex) {
             Logger.getLogger(Formulario.class.getName()).log(Level.SEVERE, null, ex);
         }
+        path = repo;
         Icon icono = new ImageIcon(repo);
         Report.setIcon(icono);
 
@@ -719,6 +754,7 @@ public class Formulario extends javax.swing.JFrame {
        } catch (InterruptedException ex) {
            Logger.getLogger(Formulario.class.getName()).log(Level.SEVERE, null, ex);
        }
+       path = "Categorias.png";
        Icon icono = new ImageIcon("Categorias.png");
        Report.setIcon(icono);
     }//GEN-LAST:event_jButton12ActionPerformed
@@ -735,6 +771,7 @@ public class Formulario extends javax.swing.JFrame {
             BufferedWriter write = new BufferedWriter(new FileWriter("AVLPreorden.dot"));
             write.write(graph);
             write.close();
+            path = "AVLPreorden.png";
             File a = new File("AVLPreorden.dot");
             String comando = "dot -Tpng "+a.getAbsolutePath()+" -o"+a.getAbsolutePath().replace(".dot", ".png");
             Runtime.getRuntime().exec(comando);
@@ -760,6 +797,7 @@ public class Formulario extends javax.swing.JFrame {
             BufferedWriter write = new BufferedWriter(new FileWriter("AVLInorden.dot"));
             write.write(graph);
             write.close();
+            path = "AVLInorden.png";
             File a = new File("AVLInorden.dot");
             String comando = "dot -Tpng "+a.getAbsolutePath()+" -o"+a.getAbsolutePath().replace(".dot", ".png");
             Runtime.getRuntime().exec(comando);
@@ -785,6 +823,7 @@ public class Formulario extends javax.swing.JFrame {
             BufferedWriter write = new BufferedWriter(new FileWriter("AVLPostorden.dot"));
             write.write(graph);
             write.close();
+            path = "AVLPostorden.png";
             File a = new File("AVLPostorden.dot");
             String comando = "dot -Tpng "+a.getAbsolutePath()+" -o"+a.getAbsolutePath().replace(".dot", ".png");
             Runtime.getRuntime().exec(comando);
@@ -805,6 +844,7 @@ public class Formulario extends javax.swing.JFrame {
        } catch (InterruptedException ex) {
            Logger.getLogger(Formulario.class.getName()).log(Level.SEVERE, null, ex);
        }
+       path = "Usuarios.png";
        Icon icono = new ImageIcon("Usuarios.png");
        Report.setIcon(icono);
     }//GEN-LAST:event_jButton16ActionPerformed
@@ -869,6 +909,58 @@ public class Formulario extends javax.swing.JFrame {
         ActualizarTabla();
         ComboCategorias();
     }//GEN-LAST:event_jButton21ActionPerformed
+
+    private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
+        LinkedList<Block> blockchain = ctrl.GetBlockchain();
+        String graph = "digraph g { rankdir=LR; node [shape = box];\n";
+        for (int i = 0; i < blockchain.Size(); i++) {
+            Block temp = blockchain.ElementAt(i);
+            graph += "N"+i+" [ label = \""+temp.getIndex()+"\\n"+temp.getDate()+"\\n"+temp.getNonce()+"\\n"+temp.getPrevHash()+"\\n"+temp.getHash()+"\"];\n";
+        }
+        for (int i = 1; i < blockchain.Size(); i++) {
+            graph += "N"+(i-1)+" -> N"+i+";\n";
+        }
+        graph +="}";
+        System.out.println(graph);
+        try{
+            BufferedWriter write = new BufferedWriter(new FileWriter("Blockchain.dot"));
+            write.write(graph);
+            write.close();
+            File a = new File("Blockchain.dot");
+            String comando = "dot -Tpng "+a.getAbsolutePath()+" -o"+a.getAbsolutePath().replace(".dot", ".png");
+            Runtime.getRuntime().exec(comando);
+            sleep(1000);
+        }catch(IOException | InterruptedException ex){}
+        path = "Blockchain.png";
+        Icon icono = new ImageIcon("Blockchain.png");
+        Report.setIcon(icono);
+    }//GEN-LAST:event_jButton18ActionPerformed
+
+    private void jButton22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton22ActionPerformed
+        List<NodoRed> temp = ctrl.GetNodos();
+        String graph = "digraph g { rankdir=LR; node [shape = box];\n";
+        for (int i = 0; i < temp.Size(); i++) {
+            NodoRed nodo = temp.ElementAt(i);
+            graph += "N"+i+" [label = \""+nodo.getIP()+"\\n"+nodo.getPuerto()+"\"];\n";
+        }
+        for (int i = 1; i < temp.Size(); i++) {
+            graph += "N"+(i-1)+" -> N"+i+";\n";
+        }
+        graph += "}";
+        System.out.println(graph);
+        try{
+            BufferedWriter write = new BufferedWriter(new FileWriter("NodosRed.dot"));
+            write.write(graph);
+            write.close();
+            File a = new File("NodosRed.dot");
+            String comando = "dot -Tpng "+a.getAbsolutePath()+" -o"+a.getAbsolutePath().replace(".dot", ".png");
+            Runtime.getRuntime().exec(comando);
+            sleep(1000);
+        }catch(IOException | InterruptedException ex){}
+        path = "NodosRed.png";
+        Icon icono = new ImageIcon("NodosRed.png");
+        Report.setIcon(icono);
+    }//GEN-LAST:event_jButton22ActionPerformed
 
     private void BuscadorLibros(){
         if (isNumeric(jTextBuscador.getText())) {
@@ -1021,10 +1113,8 @@ public class Formulario extends javax.swing.JFrame {
        this.Report.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
             public void mouseClicked(java.awt.event.MouseEvent e){
-               
-                File a = new File("Reporte.png");
                 try{
-                    
+                    File a = new File(path);
                     Desktop.getDesktop().open(a);
                 }catch (IOException ex){
                     System.out.println(ex.toString());
@@ -1059,10 +1149,12 @@ public class Formulario extends javax.swing.JFrame {
     private javax.swing.JButton jButton15;
     private javax.swing.JButton jButton16;
     private javax.swing.JButton jButton17;
+    private javax.swing.JButton jButton18;
     private javax.swing.JButton jButton19;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton20;
     private javax.swing.JButton jButton21;
+    private javax.swing.JButton jButton22;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
@@ -1101,6 +1193,8 @@ public class Formulario extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel35;
+    private javax.swing.JLabel jLabel36;
+    private javax.swing.JLabel jLabel37;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
